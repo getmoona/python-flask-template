@@ -4,8 +4,11 @@ from waitress import serve
 import os
 
 from function import handler
+from elasticapm.contrib.flask import ElasticAPM
 
 app = Flask(__name__)
+
+apm = ElasticAPM(app)
 
 class Event:
     def __init__(self):
