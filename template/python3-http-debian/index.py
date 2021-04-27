@@ -27,13 +27,11 @@ def format_status_code(res):
         return res['statusCode']
     return 500
 
-def format_body(res, content_type):
-    if content_type == 'application/octet-stream':
-        return res['body']
+def format_body(res):
     if 'body' not in res:
         return jsonify({})
     else:
-        return jsonify(res['body'])
+        return res['body']
 
 def format_headers(res):
     if 'headers' not in res:
@@ -47,19 +45,12 @@ def format_headers(res):
     headers = res['headers'].append('Content-type', 'application/json')
     return headers
 
-def get_content_type(res):
-    content_type = ""
-    if 'headers' in res:
-        content_type = res['headers'].get('Content-type', '')
-    return content_type
-
 def format_response(res):
     if res == None:
         return ('Error: no response', 500)
 
     statusCode = format_status_code(res)
-    content_type = get_content_type(res)
-    body = format_body(res, content_type)
+    body = format_body(res)
 
     headers = format_headers(res)
 
