@@ -37,15 +37,15 @@ def format_body(res):
 
 def format_headers(res):
     if 'headers' not in res:
-        return [{'Content-type', 'application/json'}]
+        return [('Content-type', 'application/json')]
     elif type(res['headers']) == dict:
-        headers = [{'Content-type', 'application/json'}]
+        headers = [('Content-type', 'application/json')]
         for key in res['headers'].keys():
             header_tuple = (key, res['headers'][key])
             headers.append(header_tuple)
         return headers
-    
-    return res['headers']
+    headers = res['headers'].append('Content-type', 'application/json')
+    return headers
 
 def format_response(res):
     if res == None:
