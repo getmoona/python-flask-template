@@ -30,10 +30,8 @@ def format_status_code(res):
 def format_body(res):
     if 'body' not in res:
         return jsonify({})
-    elif type(res['body']) == dict:
-        return jsonify(res['body'])
     else:
-        return jsonify({"body": str(res['body'])})
+        return jsonify(res['body'])
 
 def format_headers(res):
     if 'headers' not in res:
