@@ -25,7 +25,7 @@ class Context:
 def format_status_code(res):
     if 'statusCode' in res:
         return res['statusCode']
-    return 200
+    return 500
 
 def format_body(res):
     if 'body' not in res:
@@ -49,7 +49,7 @@ def format_headers(res):
 
 def format_response(res):
     if res == None:
-        return ('', 200)
+        return ('Error: no response', 500)
 
     statusCode = format_status_code(res)
     body = format_body(res)
