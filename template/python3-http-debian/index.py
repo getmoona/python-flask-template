@@ -30,24 +30,24 @@ def format_status_code(res):
 def format_body(res):
     if 'body' not in res:
         return jsonify({})
-    else:
-        return res['body']
+    return res['body']
 
 def format_headers(res):
     if 'headers' not in res:
         return [('Content-type', 'application/json')]
-    elif type(res['headers']) == dict:
-        headers = [('Content-type', 'application/json')]
-        for key in res['headers'].keys():
-            header_tuple = (key, res['headers'][key])
-            headers.append(header_tuple)
+    elif type(res['headers']) != dict:
+        headers = res['headers']
+        headers.append('Content-type', 'application/json')
         return headers
-    headers = res['headers'].append('Content-type', 'application/json')
+    headers = [('Content-type', 'application/json')]
+    for key in res['headers'].keys():
+        header_tuple = (key, res['headers'][key])
+        headers.append(header_tuple)
     return headers
 
 def format_response(res):
     if res == None:
-        return ('Error: no response', 500)
+        return (jsonify({"message": "Error: no response"}), 500, [('Content-type', 'application/json')])
 
     statusCode = format_status_code(res)
     body = format_body(res)
