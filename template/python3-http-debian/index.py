@@ -29,7 +29,7 @@ def format_status_code(res):
 
 def format_body(res):
     if 'body' not in res:
-        return jsonify({})
+        return jsonify({"message": res})
     return res['body']
 
 def format_headers(res):
