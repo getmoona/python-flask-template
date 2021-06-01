@@ -1,5 +1,5 @@
 FROM openfaas/of-watchdog:0.8.2 as watchdog
-FROM python:3.9-alpine
+FROM python:3.9-slim
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
