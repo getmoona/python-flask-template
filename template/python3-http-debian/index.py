@@ -7,7 +7,6 @@ from function import handler
 from elasticapm.contrib.flask import ElasticAPM
 
 app = Flask(__name__)
-app.config["ELASTIC_APM"] = {"DEBUG": False}
 apm = ElasticAPM(app)
 
 class Event:
