@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from waitress import serve
 import os
+import logging
 
 from function import handler
 from elasticapm.contrib.flask import ElasticAPM
@@ -9,6 +10,8 @@ from elasticapm.contrib.flask import ElasticAPM
 app = Flask(__name__)
 apm = ElasticAPM(app)
 
+logger = logging.getLogger('waitress')
+logger.setLevel(logging.ERROR)
 class Event:
     def __init__(self):
         self.body = request.get_data()
